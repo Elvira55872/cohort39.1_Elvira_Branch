@@ -1,0 +1,21 @@
+{
+  "topic": "Sorting and searching algorithms",
+  "date": "2024-01-10",
+  "plan": "plan.md",
+  "theory": "theory.md",
+  "homework": "homework.md",
+  "code": [
+    "src/theory/BinarySearch.java",
+    "src/theory/LinearSearch.java",
+    "src/theory/sorting_algorithms/BubbleSort.java",
+    "src/theory/sorting_algorithms/HeapSort.java",
+    "src/theory/sorting_algorithms/InsertionSort.java",
+    "src/theory/sorting_algorithms/MergeSort.java",
+    "src/theory/sorting_algorithms/QuickSort.java",
+    "src/theory/sorting_algorithms/SelectionSort.java",
+    "src/theory/sorting_algorithms/ShellSort.java",
+    "src/theory/sorting_algorithms/Sorting.java",
+    "src/theory/sorting_algorithms/AlgorithmCompilation.java"
+  ],
+  "video": ""
+}
