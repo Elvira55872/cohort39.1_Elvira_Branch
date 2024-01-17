@@ -1,5 +1,9 @@
 import java.util.Arrays;
 
+/**
+ * Lesson_19 добавьте в ваш класс логику наследования,
+ * переопределите указанные методы (@Override) в вашем основном классе.
+ */
 public class ResidentialUnit {
     String[] arrRoomers = new String[0];
     String[] roomers = new String[0];
