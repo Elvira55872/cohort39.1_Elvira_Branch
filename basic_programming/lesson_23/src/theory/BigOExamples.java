@@ -24,7 +24,7 @@ import java.util.List;
  */
 public class BigOExamples {
     public static void main(String[] args) {
-        
+
     }
 
 
@@ -35,13 +35,95 @@ public class BigOExamples {
 
 
     // O(n)  O(n + 1) -> O(n)
-    static int getSumOfElem(int[] nums) { // 352 bit
+    static int getSumOfElem(int[] nums) {
         int sum = 0;
         for (int i = 0; i < nums.length; i++) {
-            sum += i;
+            sum += nums[i];
+            // 100 lines of code == const
         }
         return sum;
     }
+
+
+    // O(n/2) -> O(n)
+    static int getSumOfHalfElem(int[] nums) {
+        int step = 0;
+
+        int sum = 0;
+        step++;
+        for (int i = 0; i < nums.length/2; i++) {
+            sum += nums[i];
+            step++;
+        }
+        return sum;
+    }
+
+
+    // N N -> O(2N) -> O(N)
+    static void getSumOfHalfElem(int[] nums1, int[] nums2) {
+        int step = 0;
+
+
+        for (int i = 0; i < nums1.length; i++) {
+            System.out.println(nums1[i]);
+            step++;
+        }
+
+        for (int i = 0; i < nums2.length; i++) {
+            System.out.println(nums2[i]);
+            step++;
+        }
+    }
+
+
+    // O(n * m) -> n == m -> O (n * n) -> O(n^2)
+    static void nestedLoop(int[] nums1, int[] nums2) {
+        int step = 0;
+
+        for (int i = 0; i < nums1.length; i++) {
+            for (int j = 0; j < nums2.length; j++) {
+                System.out.println(nums2[j]);
+                step++;
+            }
+        }
+    }
+
+
+    // O(n + n^2) -> O(n^2)
+    static void someMethod(int[] nums1, int[] nums2) {
+        int sum = 0;// 1
+        for (int i = 0; i < nums1.length; i++) {
+            sum += nums1[i];
+        }
+
+
+        for (int i = 0; i < nums1.length; i++) {
+            for (int j = 0; j < nums2.length; j++) {
+                System.out.println(nums2[j]);
+            }
+        }
+    }
+
+
+
+    // {   {1, 2, 3}, {-4, -3, 2}, {80, 90, 1000}     }
+    static void findElement(int[][] nums, int element) { // 90 - nums[2][1]
+        // O(n * log n)
+        for (int i = 0; i < nums.length; i++) {
+            int[] innerArray = nums[i];
+            // binary search in innerArray O(logN)
+        }
+
+
+    }
+
+
+
+
+
+
+
+
 
     static boolean isContainsBinaryImplementationRecursion(int[] sortedArray, int x) {
         int mid = sortedArray.length / 2;

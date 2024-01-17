@@ -1,0 +1,12 @@
+{
+  "plan": "plan.md",
+  "theory": "theory.md",
+  "homework": "homework.md",
+  "code": [
+    "src/practice/CustomException.java",
+    "src/practice/CustomExceptionDemo.java",
+    "src/practice/ExceptionExample.java",
+    "src/practice/FileReadExample.java"
+  ],
+  "video": ""
+}
