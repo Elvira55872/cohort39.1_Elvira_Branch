@@ -1,5 +1,22 @@
 import java.util.Arrays;
 
+/**
+ * Практика Реализации ООП
+ * <p>
+ * Я выбрала :
+ * Задание 2: Жилой Комплекс
+ * Объект Реализации: Квартира
+ * Поля:
+ * площадь: Площадь квартиры в квадратных метрах.
+ * количествоКомнат: Количество комнат.
+ * этаж: Этаж, на котором находится квартира.
+ * жильцы: Список проживающих людей.
+ * Методы:
+ * добавитьЖильца(жилец): Добавляет жильца в список.
+ * выписатьЖильца(жилец): Удаляет жильца из списка.
+ * показатьИнформацию(): Выводит информацию о квартире.
+ */
+
 public class Flat extends ResidentialUnit implements Rentable {
     // protected and STATIC:
     // STATIC тк данные для всех квартир одинаковые
@@ -29,8 +46,13 @@ public class Flat extends ResidentialUnit implements Rentable {
     // Метод для создания квартиры
     public static Flat setFlat(int numberOfFlat, double square, int amountOfRooms, int floorNumber, String roomers) {
         boolean isFlatExist = false;
+
+        if (numberOfFlat >= 300) {
+            isFlatExist = true;
+        }
+
         for (int i = 0; i < arrFlats.length; i++) {
-            if (numberOfFlat == arrFlats[i] || numberOfFlat < 0 || numberOfFlat >= 300) {
+            if (numberOfFlat == arrFlats[i] || numberOfFlat < 0) {
                 isFlatExist = true;
                 break;
             }
@@ -62,6 +84,7 @@ public class Flat extends ResidentialUnit implements Rentable {
         }
         return arrRoomers;
     }
+
     // Метод для удаления жильца
     @Override
     public String[] removeRoomer(String name) {
@@ -117,13 +140,13 @@ public class Flat extends ResidentialUnit implements Rentable {
     }
 
     @Override
-    public boolean equals(Object object){
+    public boolean equals(Object object) {
         // проверили ссылки объектов
-        if (this == object){
+        if (this == object) {
             return true;
         }
         // проверили принадлежность к одному и тому же классу +
-        if (!(object instanceof Flat) || object == null ){
+        if (!(object instanceof Flat) || object == null) {
             return false;
         }
         Flat obj = (Flat) object;
@@ -136,15 +159,16 @@ public class Flat extends ResidentialUnit implements Rentable {
 
     /**
      * INTERFACE
+     *
      * @param months Количество месяцев аренды.
      */
     @Override
     public void rentOut(int months) {
-        System.out.printf("Квартира %d сдана в аренду на %d месяцев\n",numberOfFlat,months);
+        System.out.printf("Квартира %d сдана в аренду на %d месяцев\n", numberOfFlat, months);
     }
 
     @Override
     public void terminateRental() {
-        System.out.printf("Квартира %d снята с аренды\n",numberOfFlat);
+        System.out.printf("Квартира %d снята с аренды\n", numberOfFlat);
     }
 }
