@@ -24,6 +24,6 @@ public class Box<T> {
         rawBox.set(123);        // потенциальная ошибка во время выполнения
 
         // Попытка извлечения строки из Box, который теперь содержит Integer
-        String riskyValue = stringBox.get(); // может вызвать ClassCastException
+        String riskyValue =  stringBox.get(); // может вызвать ClassCastException
     }
 }
