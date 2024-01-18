@@ -39,37 +39,28 @@ public class HomeWork_L25 {
     }
 
     public static double calculateSircle(double[] nums) throws IncorrectFigureSizeException {
-        double sircleArea = -1;
         if (nums[0] > 0) {
-            sircleArea = Math.PI * nums[0] * nums[0];
-            System.out.printf("Sircle area: %.2f%n", sircleArea);
+            return Math.PI * nums[0] * nums[0];
         } else {
             throw new IncorrectFigureSizeException("Sircle area: sircle doesnt exist");
         }
-        return sircleArea;
     }
 
     public static double calculateSquare(double[] nums) throws IncorrectFigureSizeException {
-        double squareArea = -1;
         if (nums[0] > 0 && nums[1] > 0) {
-            squareArea = nums[0] * nums[1];
-            System.out.printf("Square area: %.2f%n", squareArea);
+            return nums[0] * nums[1];
         } else {
             throw new IncorrectFigureSizeException("Square area: square doesnt exist");
         }
-        return squareArea;
     }
 
     public static double calculateTriangle(double[] nums) throws IncorrectFigureSizeException {
-        double triangleArea = -1;
         if (isTriangleExists(nums)) {
             double p = (nums[0] + nums[1] + nums[2]) / 2;
-            triangleArea = Math.sqrt(p * (p - nums[0]) * (p - nums[1]) * (p - nums[2]));
-            System.out.printf("Triangle area: %.2f%n", triangleArea);
+            return Math.sqrt(p * (p - nums[0]) * (p - nums[1]) * (p - nums[2]));
         } else {
             throw new IncorrectFigureSizeException("Triangle area: your triangle doesn`t exist");
         }
-        return triangleArea;
     }
 
     public static boolean isTriangleExists(double[] nums) {
