@@ -1,4 +1,4 @@
-package practice.phone_book;
+package practice.array_list.phone_book;
 
 public class Person {
     private String name;

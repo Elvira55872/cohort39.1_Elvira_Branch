@@ -1,0 +1,17 @@
+{
+  "plan": "plan.md",
+  "theory": "theory.md",
+  "homework": "homework.md",
+  "code": [
+    "src/practice/array_list/ArrayListExample.java",
+    "src/practice/array_list/ArrayListOperationsExample.java",
+    "src/practice/array_list/phone_book/Person.java",
+    "src/practice/array_list/phone_book/PhoneBook.java",
+    "src/practice/linked_list/DoublyLinkedList.java",
+    "src/practice/linked_list/LinkedListExample.java",
+    "src/practice/linked_list/ListPerformanceComparison.java",
+    "src/practice/linked_list/Node.java",
+    "src/practice/linked_list/SinglyLinkedList.java"
+  ],
+  "video": ""
+}
