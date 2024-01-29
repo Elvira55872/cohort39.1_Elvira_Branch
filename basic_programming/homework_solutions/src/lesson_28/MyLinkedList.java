@@ -1,48 +1,6 @@
-# Домашнее задание
+package lesson_28;
 
-### Задание: Поиск k-го элемента с конца в односвязном списке
-#### Цель:
-Реализовать метод для нахождения k-го элемента с конца в односвязном списке.
-
-#### Задачи:
-1. Реализовать метод `findKthFromEnd` в классе `CustomLinkedList`.
-2. Метод должен находить элемент за один проход по списку.
-3. Продемонстрировать работу метода на различных списках.
-
-Односвязный список должен строиться н основе класса `Node` (может быть, как внутренним статическим, см `LinkedList`, 
-так и отдельным файлом):
-
-Внутренний:
-```java
-    private static class Node {
-        int data;
-        Node next;
-
-        Node(int data) {
-            this.data = data;
-            this.next = null;
-        }
-    }
-```
-
-Отдельный:
-```java
-    // Внутренний класс для узла списка
-    public class Node {
-        int data;
-        Node next;
-
-        Node(int data) {
-            this.data = data;
-            this.next = null;
-        }
-    }
-```
-
-## *задание по желанию:
- 
-Реализуйте свою версию класса `LinkedList` путем имплементации интерфейса:
-```java
+import java.util.List;
 
 public interface MyLinkedList {
 
@@ -102,5 +60,3 @@ public interface MyLinkedList {
     // a->b->c->d->e->a lastIndexOf(a) -> 5   lastIndexOf(g) - -1
     int lastIndexOf(String data);
 }
-
-```
