@@ -8,7 +8,7 @@ public class Flat extends ResidentialUnit implements Rentable {
 
     // protected but not static:
     // эти данные могут знать все, в них нет ничего секретного, но они индивидуальны для каждой квартиры
-    protected static int numberOfFlat;
+    protected int numberOfFlat;
     protected int floorNumber;
 
     // PRIVATE but not static:
@@ -52,7 +52,7 @@ public class Flat extends ResidentialUnit implements Rentable {
     //ОПЕРАЦИИ С ЖИЛЬЦАМИ (изменила с void на возвращающее значение)
     // Метод для добавления жильца
     @Override
-    public String[] setRoomer(String name) {
+    public void setRoomer(String name) {
         if (arrRoomers.length < 5) {
             arrRoomers = Arrays.copyOf(arrRoomers, arrRoomers.length + 1);
             arrRoomers[arrRoomers.length - 1] = name;
@@ -60,22 +60,30 @@ public class Flat extends ResidentialUnit implements Rentable {
         } else {
             System.out.println("В квартире не может жить больше 5 людей");
         }
-        return arrRoomers;
     }
 
     // Метод для удаления жильца
     @Override
-    public String[] removeRoomer(String name) {
+    public void removeRoomer(String name) {
         for (int i = 0; i < arrRoomers.length; i++) {
-            if (arrRoomers[i] == name) {
-                arrRoomers[i] = arrRoomers[arrRoomers.length - 1];
-                arrRoomers = Arrays.copyOf(arrRoomers, arrRoomers.length - 1);
-            } else {
-                continue;
+            if (arrRoomers[i].equals(name)) {
+                // новое решение
+                String[] newResidents = new String[arrRoomers.length - 1];
+                System.arraycopy(arrRoomers, 0, newResidents, 0, i);
+                System.arraycopy(arrRoomers, i + 1, newResidents, i, arrRoomers.length - i - 1);
+                arrRoomers = newResidents;
+                //return;
+                // старое решение
+//                arrRoomers[i] = arrRoomers[arrRoomers.length - 1];
+//                arrRoomers = Arrays.copyOf(arrRoomers, arrRoomers.length - 1);
+//                System.out.printf("\n %s был выселен из квартиры %d ", name, numberOfFlat);
             }
         }
-        System.out.printf("\n %s был выселен из квартиры %d ", name, numberOfFlat);
-        return arrRoomers;
+    }
+
+    // метод для подсчета количества жильцов
+    public int countRoomers(){
+        return arrRoomers.length;
     }
 
     //ГЕТТЕРЫ

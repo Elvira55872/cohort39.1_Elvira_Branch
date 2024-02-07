@@ -10,26 +10,16 @@ public class TestFlat {
     @Test
     public void testSetRoomer() {
         Flat flat = new Flat(5, 40.0, 1, 2, "Kate");
-
-        String[] expected1 = {"Kate", "Maria"};
-        boolean expected2 = true;
-
-        boolean result = Arrays.equals(flat.setRoomer("Maria"), expected1);
-
-        assertEquals(expected2, result);
+        flat.setRoomer("Maria");
+        assertEquals(2, flat.countRoomers());
     }
 
     // тест на удаление жильца
     @Test
     public void testRemoveRoomer() {
         Flat flat = new Flat(5, 40.0, 1, 2, "Kate");
-
-        String[] expected1 = new String[0];
-        boolean expected2 = true;
-
-        boolean result = Arrays.equals(flat.removeRoomer("Kate"), expected1);
-
-        assertEquals(expected2, result);
+        flat.removeRoomer("Kate");
+        assertEquals(0, flat.countRoomers());
     }
 
     // тест на получение номера квартиры
