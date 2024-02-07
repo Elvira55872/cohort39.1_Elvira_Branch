@@ -72,11 +72,6 @@ public class Flat extends ResidentialUnit implements Rentable {
                 System.arraycopy(arrRoomers, 0, newResidents, 0, i);
                 System.arraycopy(arrRoomers, i + 1, newResidents, i, arrRoomers.length - i - 1);
                 arrRoomers = newResidents;
-                //return;
-                // старое решение
-//                arrRoomers[i] = arrRoomers[arrRoomers.length - 1];
-//                arrRoomers = Arrays.copyOf(arrRoomers, arrRoomers.length - 1);
-//                System.out.printf("\n %s был выселен из квартиры %d ", name, numberOfFlat);
             }
         }
     }
