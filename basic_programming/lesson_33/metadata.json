@@ -1,0 +1,14 @@
+{
+  "plan": "plan.md",
+  "theory": "theory.md",
+  "homework": "homework.md",
+  "code": [
+    "src/practice/serializable/SerializationDemo.java",
+    "src/practice/serializable/UserProfile.java",
+    "src/practice/io_stream/BufferedFileOperations.java",
+    "src/practice/io_stream/FileOperations.java",
+    "src/practice/io_stream/IOExamples.java",
+    "src/practice/io_stream/ZipFileExample.java"
+  ],
+  "video": ""
+}

@@ -1,0 +1,18 @@
+{
+  "plan": "plan.md",
+  "theory": "theory.md",
+  "homework": "homework.md",
+  "code": [
+    "src/practice/mq/SimpleConsumer.java",
+    "src/practice/mq/SimpleManager.java",
+    "src/practice/mq/SimpleTaskCreator.java",
+    "src/practice/mq/Starter.java",
+    "src/practice/mq/Task.java",
+    "src/practice/HanoiTower.java",
+    "src/practice/Node.java",
+    "src/practice/StackQueueExercises.java",
+    "src/practice/StackAndQueueOperations.java",
+    "src/practice/TreeTraversal.java"
+  ],
+  "video": ""
+}
