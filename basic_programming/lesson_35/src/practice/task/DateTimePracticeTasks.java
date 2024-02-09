@@ -10,6 +10,12 @@ import java.time.Duration;
 import java.time.ZoneId;
 
 public class DateTimePracticeTasks {
+    public static void main(String[] args) {
+        System.out.println("Age: " + calculateAge("1990-01-01"));
+        System.out.println("Minutes between: " + timeBetween("09:00:00", "10:30:00"));
+        System.out.println("Day of week: " + findDayOfWeek("2023-01-01"));
+        System.out.println("Formatted current date and time: " + formatCurrentDateTime());
+    }
 
     /**
      * Задача 1: Рассчитайте возраст человека на основе его даты рождения.
@@ -33,19 +39,7 @@ public class DateTimePracticeTasks {
     }
 
     /**
-     * Задача 3: Переведите момент времени из одного часового пояса в другой.
-     *
-     * @param dateTime Дата и время в формате "yyyy-MM-ddTHH:mm:ss".
-     * @param fromZoneId ID исходного часового пояса.
-     * @param toZoneId ID целевого часового пояса.
-     * @return Строка с датой и временем в целевом часовом поясе.
-     */
-    public static String convertTimeZone(String dateTime, String fromZoneId, String toZoneId) {
-        return null;
-    }
-
-    /**
-     * Задача 4: Найдите день недели для даты.
+     * Задача 3: Найдите день недели для даты.
      *
      * @param date Дата в формате "yyyy-MM-dd".
      * @return День недели в текстовом формате (например, "Понедельник").
@@ -55,20 +49,12 @@ public class DateTimePracticeTasks {
     }
 
     /**
-     * Задача 5: Форматируйте текущую дату и время в красивом формате.
+     * Задача 4: Форматируйте текущую дату и время в красивом формате.
      *
      * @return Текущая дата и время в формате "dd MMMM yyyy, EEEE HH:mm:ss".
      */
     public static String formatCurrentDateTime() {
         return null;
-    }
-
-    public static void main(String[] args) {
-        System.out.println("Age: " + calculateAge("1990-01-01"));
-        System.out.println("Minutes between: " + timeBetween("09:00:00", "10:30:00"));
-        System.out.println("Time zone conversion: " + convertTimeZone("2023-01-01T15:00:00", "Europe/London", "Asia/Tokyo"));
-        System.out.println("Day of week: " + findDayOfWeek("2023-01-01"));
-        System.out.println("Formatted current date and time: " + formatCurrentDateTime());
     }
 }
 
