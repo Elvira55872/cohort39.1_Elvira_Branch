@@ -1,0 +1,21 @@
+{
+  "plan": "plan.md",
+  "theory": "theory.md",
+  "homework": "homework.md",
+  "code": [
+    "src/example03/EmailNotifier.java",
+    "src/example03/Notifier.java",
+    "src/example02/Main.java",
+    "src/example03/NotificactionManager.java",
+    "src/example03/Main.java",
+    "src/example02/Greeter.java",
+    "src/example03/SmsNotifier.java",
+    "src/example01/Vehicle.java",
+    "src/example01/PeopleTransport.java",
+    "src/example01/Main.java",
+    "src/example01/FreightTrain.java",
+    "src/example01/CargoTransport.java",
+    "src/example01/Car.java"
+  ],
+  "video": ""
+}
