@@ -1,0 +1,10 @@
+{
+  "plan": "plan.md",
+  "theory": "theory.md",
+  "homework": "homework.md",
+  "code": [
+    "src/example01/SinglyLinkedList.java",
+    "src/example01/Main.java"
+  ],
+  "video": ""
+}
