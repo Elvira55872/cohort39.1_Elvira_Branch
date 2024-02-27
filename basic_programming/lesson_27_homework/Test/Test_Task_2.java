@@ -3,7 +3,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 
-public class Teat_Task_2 {
+public class Test_Task_2 {
 
     @Test
     public void TestFillUpRandom() {
@@ -11,7 +11,22 @@ public class Teat_Task_2 {
         Homework_L27_task2.fillUpRandom(arrList, 10, 0, 30);
 
         Assertions.assertEquals(10, arrList.size());
-        Assertions.assertNotEquals(true, arrList.isEmpty());
+        Assertions.assertFalse(arrList.isEmpty());
+    }
+
+    @Test
+    public void TestFillUpRandomIfRangeCorrect() {
+        ArrayList<Integer> arrList = new ArrayList<>();
+        Homework_L27_task2.fillUpRandom(arrList, 10, 0, 30);
+        boolean isRangeCorrect = true;
+
+        for (Integer integer : arrList) {
+            if (integer < 0 || integer > 30) {
+                isRangeCorrect = false;
+            }
+        }
+
+        Assertions.assertTrue(isRangeCorrect);
     }
 
     @Test
