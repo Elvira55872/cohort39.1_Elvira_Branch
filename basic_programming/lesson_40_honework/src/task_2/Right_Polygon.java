@@ -19,7 +19,7 @@ public class Right_Polygon extends Shape implements Resizable {
     }
 
     @Override
-    public double resize(double coefficient) {
-        return getPerimeter() * coefficient;
+    public void resize(double coefficient) {
+        this.lengthOfSide *= coefficient;
     }
 }

@@ -83,13 +83,16 @@ public class Main {
         if (decicion == 1) {
             if (landForm == 1) {
                 Circle circle = new Circle(radius);
-                System.out.println("Fence price: " + circle.resize(coefficient) * price);
+                circle.resize(coefficient);
+                System.out.println("Fence price: " + circle.getPerimeter());
             } else if (landForm == 2) {
                 Rectangle rectangle = new Rectangle(side1,side2);
-                System.out.println("Fence price: " + rectangle.resize(coefficient) * price);
+                rectangle.resize(coefficient);
+                System.out.println("Fence price: " + rectangle.getPerimeter());
             } else if (landForm == 3) {
                 Right_Polygon polygone = new Right_Polygon(amountOfSides,lengthOfSide);
-                System.out.println("Fence price: " + polygone.resize(coefficient) * price);
+                polygone.resize(coefficient);
+                System.out.println("Fence price: " + polygone.getPerimeter());
             }
         }
     }

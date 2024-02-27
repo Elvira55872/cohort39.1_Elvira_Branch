@@ -20,7 +20,8 @@ public class Rectangle extends Shape implements Resizable {
     }
 
     @Override
-    public double resize(double coefficient) {
-        return getPerimeter() * coefficient;
+    public void resize(double coefficient) {
+        this.side1 *= coefficient;
+        this.side2 *= coefficient;
     }
 }
