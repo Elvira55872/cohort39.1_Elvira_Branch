@@ -12,7 +12,7 @@ import java.util.Random;
 
 public class Homework_L27_task2 {
     // рандомное заполнение списка
-    public static ArrayList<Integer> fillUpRandom(ArrayList list, int size, int from, int to) {
+    public static ArrayList<Integer> fillUpRandom(ArrayList<Integer> list, int size, int from, int to) {
         Random random = new Random();
         for (int i = 0; i < size; i++) {
             list.add(random.nextInt(from, to));
@@ -23,9 +23,9 @@ public class Homework_L27_task2 {
     // нахождение максимального числа
     public static int maxNumber(ArrayList<Integer> list) {
         int maxNumber = list.get(0);
-        for (int i = 0; i < list.size(); i++) {
-            if (maxNumber < list.get(i)) {
-                maxNumber = list.get(i);
+        for (Integer integer : list) {
+            if (maxNumber < integer) {
+                maxNumber = integer;
             }
         }
         return maxNumber;
@@ -34,9 +34,9 @@ public class Homework_L27_task2 {
     // нахождение минимального числа
     public static int minNumber(ArrayList<Integer> list) {
         int minNumber = list.get(0);
-        for (int i = 0; i < list.size(); i++) {
-            if (minNumber > list.get(i)) {
-                minNumber = list.get(i);
+        for (Integer integer : list) {
+            if (minNumber > integer) {
+                minNumber = integer;
             }
         }
         return minNumber;
@@ -45,8 +45,8 @@ public class Homework_L27_task2 {
     // нахождение среднего значения в списке
     public static double middleNumber(ArrayList<Integer> list) {
         double sum = 0;
-        for (int i = 0; i < list.size(); i++) {
-            sum += list.get(i);
+        for (Integer integer : list) {
+            sum += integer;
         }
         return sum / list.size();
     }
@@ -54,20 +54,20 @@ public class Homework_L27_task2 {
     // нахождение всех простых чисел в списке
     public static ArrayList<Integer> simpleNumbers(ArrayList<Integer> list) {
         ArrayList<Integer> simpleNumbers = new ArrayList<>();
-        for (int i = 0; i < list.size(); i++) {
+        for (Integer integer : list) {
             boolean isPrime = true;
-            for (int j = 2; j <= list.get(i) / 2; j++) {
-                if (list.get(i) % j == 0) {
+            for (int j = 2; j <= integer / 2; j++) {
+                if (integer % j == 0) {
                     isPrime = false;
                     break;
                 }
             }
-            if (list.get(i) == 0) {
+            if (integer == 0) {
                 continue;
-            } else if (list.get(i) == 1) {
+            } else if (integer == 1) {
                 isPrime = false;
             } else if (isPrime) {
-                simpleNumbers.add(list.get(i));
+                simpleNumbers.add(integer);
             }
         }
         return simpleNumbers;

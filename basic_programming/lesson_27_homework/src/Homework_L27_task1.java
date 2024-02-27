@@ -8,16 +8,24 @@ import java.util.ArrayList;
  * Реализуйте функционал для перевода всех строк в верхний регистр.
  */
 public class Homework_L27_task1 {
+    public static void main(String[] args) {
+        ArrayList<String> list = new ArrayList<>();
+        list.add("one");
+        list.add("two");
+        list.add("three");
+        list.add("four");
+        System.out.println(Homework_L27_task1.removeShortString(list, 4).toString());
+    }
+
     public static ArrayList<String> removeShortString(ArrayList<String> list, int size) {
         ArrayList<String> temp = new ArrayList<>();
         for (int i = 0; i < list.size(); i++) {
-            String temp1 = list.get(i);
-            int temp2 = temp1.length();
-            if (temp2 <= size) {
-                temp.add(temp1);
+            if (list.get(i).length() < size) {
+                temp.add(list.get(i));
             }
         }
         list.removeAll(temp);
+        list.replaceAll(String::toUpperCase);
         return list;
     }
 }
