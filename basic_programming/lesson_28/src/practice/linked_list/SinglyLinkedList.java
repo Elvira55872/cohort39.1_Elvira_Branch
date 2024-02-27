@@ -1,8 +1,6 @@
 package practice.linked_list;
 
 public class SinglyLinkedList {
-
-
     private Node head; // Начальный узел списка
 
     // Конструктор для инициализации связного списка
