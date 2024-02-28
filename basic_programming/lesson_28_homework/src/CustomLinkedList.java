@@ -1,5 +1,7 @@
+import java.util.LinkedList;
+
 public class CustomLinkedList {
-    private Node first;
+    private static Node first;
     private static int count;
 
     // Конструктор для инициализации связного списка
@@ -26,6 +28,15 @@ public class CustomLinkedList {
         }
     }
 
+    // Вспомогательный метод для проверки последнего элемента
+    public int getLast() {
+        Node current = first;
+        while (current.next != null) {
+            current = current.next;
+        }
+        return current.data;
+    }
+
     // Вспомогательный метод для печати списка
     public void printList() {
         Node current = first;
@@ -41,7 +52,7 @@ public class CustomLinkedList {
             System.out.println("Element with this index doesnt exist");
             return -1;
         }
-        int indexOfTargetElement = count - kElement ;
+        int indexOfTargetElement = count - kElement;
         Node current = first;
         for (int i = 0; i < indexOfTargetElement; i++) {
             current = current.next;
