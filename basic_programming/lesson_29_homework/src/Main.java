@@ -1,3 +1,4 @@
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -9,7 +10,7 @@ import java.util.Set;
 public class Main {
 
     public static Set<String> sameDataFounder(Set<String> one, Set<String> two) {
-        Set<String> sameData = one;
+        Set<String> sameData = new HashSet<>(one);
         sameData.retainAll(two);
         return sameData;
     }
