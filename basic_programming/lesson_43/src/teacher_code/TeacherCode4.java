@@ -38,6 +38,7 @@ public class TeacherCode4 {
         t.join(3000);
         r.join(3000);
 
+
         System.out.println("Максим тоже вышел гулять");
     }
 
