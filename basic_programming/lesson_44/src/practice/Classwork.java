@@ -2,12 +2,12 @@ package practice;
 
 public class Classwork {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         Classwork tasks = new Classwork();
 //        tasks.task1();
 //        tasks.task2();
 //        tasks.task3();
-//        tasks.task4();
+        tasks.task4();
 //        tasks.task5();
     }
 
@@ -29,20 +29,40 @@ public class Classwork {
     // Задача 3: Установка и получение приоритета потока. создайте поток, установите для него максмально возможный
     // приоритет. Выведите на экран "Task 3: Thread Priority: ..."
 
-    public void task3() {
-        Thread thread = null;
-
+    public void task3() throws InterruptedException {
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                System.out.println("Thread runs");
+                Thread.currentThread().setPriority(Thread.MAX_PRIORITY);
+            }
+        });
         thread.start();
+        Thread.sleep(1000);
+        System.out.println("Task 3: Thread Priority: " + thread.getPriority());
     }
 
     // Задача 4: Использование join() для ожидания завершения потока. Создайте поток, который печатает числа от 1 до 5
     // с интервалом в 1с, главный поток должен дождаться выполнения этого потока
-    public void task4() {
-        Thread thread = null;
+    public void task4() throws InterruptedException {
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                for (int i = 1; i <= 5; i++) {
+                    System.out.println(i);
+
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            }
+        });
 
         thread.start();
 
-
+        thread.join();
         System.out.println("Task 4: Thread has finished execution");
     }
 
