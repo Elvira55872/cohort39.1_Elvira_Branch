@@ -5,6 +5,7 @@ public class ReportForLesson46 {
             public void run() {
                 for (int i = 0; i < 5; i++) {
                     System.out.println(Thread.currentThread().getName() + i);
+
                 }
             }
         });
@@ -43,6 +44,7 @@ public class ReportForLesson46 {
         Если два потока имеют одинаковый приоритет, то решение о том, какой из них будет выполняться первым,
         зависит от алгоритма планировщика
 
+        Переменные класса:
         Thread.MIN_PRIORITY — минимальный приоритет, значение 1;
         Thread.NORM_PRIORITY — приоритет по умолчанию, значение 5;
         Thread.MAX_PRIORITY — максимальный приоритет потока, значение 10
