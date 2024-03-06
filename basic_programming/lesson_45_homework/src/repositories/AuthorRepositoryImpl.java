@@ -12,7 +12,7 @@ public class AuthorRepositoryImpl implements AuthorRepository{
     }
 
     @Override
-    public void addAutor(Author author) {
+    public void addAuthor(Author author) {
         if (authors.contains(author)){
             System.out.println("Author is already existing");
         } else {
@@ -21,7 +21,7 @@ public class AuthorRepositoryImpl implements AuthorRepository{
     }
 
     @Override
-    public void removeAutor(Author author) {
+    public void removeAuthor(Author author) {
         if (authors.contains(author)){
             authors.remove(author);
         } else {

@@ -5,17 +5,17 @@ public class Book {
     private Author author;
     public int bookNumber;
 
-    public enum gerne{
+    private enum gerne {
         CLASSIC,
         DETECTIVE,
         LOVE_STORY,
         SCIENCE
     }
 
-    public Book(String bookName, Author author, int bookNumber) {
+    public Book(String bookName, Author author) {
         this.bookName = bookName;
         this.author = author;
-        this.bookNumber = bookNumber;
+        this.bookNumber = 0;
     }
 
     public String getBookName() {
@@ -24,5 +24,9 @@ public class Book {
 
     public Author getAuthor() {
         return author;
+    }
+
+    public int getBookNumber() {
+        return bookNumber;
     }
 }

@@ -1,8 +1,11 @@
 package services;
 
+import dataModels.Book;
 import dataModels.Reader;
 
-public interface ReaderService {
-    Reader registerReader(Reader reader);
+import java.util.List;
+import java.util.Scanner;
 
+public interface ReaderService {
+    void addReader(Scanner scanner);
 }
