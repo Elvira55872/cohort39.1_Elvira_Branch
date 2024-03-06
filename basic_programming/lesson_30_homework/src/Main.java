@@ -46,4 +46,28 @@ public class Main {
         }
         return result;
     }
+
+    // Ильяс дал пояснения к моему коду, который я не понимала
+    public static Map<String, String> removeSameValues2(Map<String, String> map) {
+        Map<String, String> result = new HashMap<>();
+
+        // Получаем множество пар "ключ-значение" из исходной Map.
+        Set<Map.Entry<String, String>> tempSet = map.entrySet();
+
+        // Итерируем каждую пару "ключ-значение" в исходной Map.
+        for (Map.Entry<String, String> pair : tempSet) {
+            // Проверяем, содержит ли результирующая Map текущее значение.
+            // Метод containsValue() проверяет, есть ли уже это значение в Map.
+            if (!result.containsValue(pair.getValue())) {
+                // Если значение уникально (не содержится в результирующей Map),
+                // добавляем его в результат.
+                // Таким образом, гарантируется, что каждое значение будет добавлено только один раз,
+                // а дубликаты будут исключены.
+                result.put(pair.getKey(), pair.getValue());
+            }
+            // Если значение уже содержится в результирующей Map, мы его пропускаем,
+            // тем самым удаляя дубликат из рассмотрения.
+        }
+        return result;
+    }
 }
