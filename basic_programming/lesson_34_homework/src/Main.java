@@ -10,9 +10,13 @@ import java.util.Stack;
  * Скобки должны быть правильно вложены друг в друга.
  * <p>
  * Примеры
+ * <p>
  * Вход: ( [ ] { } ) Вывод: true
+ * <p>
  * Вход: [(]) Вывод: false
+ * <p>
  * Вход: {[( )]} Вывод: true
+ * <p>
  * Вход: {[} Вывод: false
  * <p>
  * Реализация
@@ -22,56 +26,31 @@ import java.util.Stack;
  * Если соответствует, извлеките элемент из стека. В противном случае, последовательность скобок неверная.
  * После обработки всей строки, если стек пуст, последовательность верная. Если в стеке остались элементы,
  * последовательность неверная.
- * <p>
- * <p>
- * <p>
- * Дополнительное задание
- * Реализуйте чтение входных данных из файла и вывод результата в другой файл,
- * чтобы попрактиковаться в работе с файловым вводом/выводом в Java.
- * <p>
- * <p>
- * <p>
- * ПОДСКАЗКИ
- * push() - вставить элемент в стек.
- * pop() - удалить элемент из стека.
- * peek() - возвращает верхний элемент стека.
- * isEmpty() - возвращает true, если стек пуст, иначе false.
- * size() - возвращает размер стека.
  */
 
 public class Main {
     public static boolean bracketsChecker(String str) {
-        Stack<String> brackets = new Stack<>();
+        char[] charArray = str.replaceAll(" ", "").toCharArray();
+        Stack<Character> brackets = new Stack<>();
 
-        if (str.contains("(")) {
-            brackets.push("(");
-            if (str.contains(")")) {
-                if (brackets.peek().equals("(")) {
-                    brackets.pop();
-                }
+        for (int i = 0; i < charArray.length; i++) {
+
+            if (charArray[i] == '(' || charArray[i] == '[' || charArray[i] == '{') {
+                brackets.push(charArray[i]);
+            }
+
+            if ((charArray[i] == ')') && brackets.peek().equals('(')) {
+                brackets.pop();
+            }
+
+            if ((charArray[i] == ']') && brackets.peek().equals('[')) {
+                brackets.pop();
+            }
+
+            if ((charArray[i] == '}') && brackets.peek().equals('{')) {
+                brackets.pop();
             }
         }
-        //"[(])"
-        if (str.contains("[")) {
-            brackets.push("[");
-
-            if (str.contains("]")) {
-                if (brackets.peek().equals("[")) {
-                    brackets.pop();
-                }
-            }
-        }
-
-        if (str.contains("{")) {
-            brackets.push("{");
-
-            if (str.contains("}")) {
-                if (brackets.peek().equals("{")) {
-                    brackets.pop();
-                }
-            }
-        }
-
 
         System.out.println(brackets.isEmpty());
         return brackets.isEmpty();
