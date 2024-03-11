@@ -1,4 +1,4 @@
-package student_code.Models;
+package student_code.models;
 
 import java.time.LocalDateTime;
 import java.util.Objects;

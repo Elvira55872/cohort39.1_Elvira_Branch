@@ -11,7 +11,7 @@ public class AuthorRepositoryImpl implements AuthorRepository{
     // тут по другому прописано у Ильяса
     public AuthorRepositoryImpl(List<Author> authors) {
         // неправильно тк создастся много объектов
-        // this.authors = authors;
+         this.authors = authors;
     }
     // вот так
     public AuthorRepositoryImpl() {
