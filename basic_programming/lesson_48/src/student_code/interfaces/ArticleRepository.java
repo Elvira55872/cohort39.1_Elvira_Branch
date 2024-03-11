@@ -1,8 +1,9 @@
 package student_code.interfaces;
 
 import student_code.models.Article;
+import student_code.models.Author;
 
-import java.util.List;
+import java.util.Set;
 
 // Управление статьями (добавление, поиск, обновление, удаление)
 public interface ArticleRepository {
@@ -10,5 +11,7 @@ public interface ArticleRepository {
 
     boolean removeArticle(Article article);
 
-    List<Article> findAllArticles();
+    Set<Article> findAllArticles();
+
+    Set<Article> findAllArticlesByAuthor(Author author);
 }
