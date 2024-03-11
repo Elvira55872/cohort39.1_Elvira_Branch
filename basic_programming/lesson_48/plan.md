@@ -1,0 +1,17 @@
+# Lesson plan No. 48 dated 03/11/2024:
+
+1. Overview of the concept of multi-layered architecture
+
+2. Basic concepts: Model, Repository, Service
+
+3. Analysis of architecture layers
+
+_________________________________________________
+
+# План урока № 48 от 11.03.2024:
+
+1. Обзор концепции многослойной архитектуры
+
+2. Основные понятия: Модель, Репозиторий, Сервис
+
+3. Разбор слоев архитектуры

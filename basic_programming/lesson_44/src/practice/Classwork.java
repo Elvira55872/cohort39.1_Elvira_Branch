@@ -5,7 +5,7 @@ public class Classwork {
     public static void main(String[] args) throws InterruptedException {
         Classwork tasks = new Classwork();
 //        tasks.task1();
-//        tasks.task2();
+        tasks.task2();
 //        tasks.task3();
         tasks.task4();
 //        tasks.task5();
@@ -21,9 +21,17 @@ public class Classwork {
     }
 
     // Задача 2: Использование метода sleep()
-    public void task2() {
-        Thread thread = null;
+    public void task2() throws InterruptedException {
+        Thread thread = new Thread(() ->
+        {
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                System.out.println("Interrupted exception");
+            }
+        });
         thread.start();
+
     }
 
     // Задача 3: Установка и получение приоритета потока. создайте поток, установите для него максмально возможный

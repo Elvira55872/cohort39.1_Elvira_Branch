@@ -55,7 +55,7 @@ public class TeacherCode {
                     try {
                         Thread.sleep(time);
                     } catch (InterruptedException e) {
-                        throw new RuntimeException(e);
+
                     }
                 }
             }
