@@ -4,8 +4,9 @@ public class Book {
     private String bookName;
     private Author author;
     public int bookNumber;
+    private Gerne gerne;
 
-    private enum gerne {
+    private enum Gerne {
         CLASSIC,
         DETECTIVE,
         LOVE_STORY,

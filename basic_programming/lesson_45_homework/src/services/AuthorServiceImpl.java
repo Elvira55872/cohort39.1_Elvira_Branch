@@ -19,7 +19,7 @@ public class AuthorServiceImpl implements AuthorService {
         List<Author> authorList = new ArrayList<>();
 
         for (Author author : repository.findAllAuthors()) {
-            if (author.getAuthorName().contains(name)) {
+            if (author.getAuthorName().toLowerCase().contains(name.toLowerCase())) {
                 authorList.add(author);
             }
         }

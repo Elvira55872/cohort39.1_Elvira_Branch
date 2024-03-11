@@ -2,13 +2,20 @@ package repositories;
 
 import dataModels.Author;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class AuthorRepositoryImpl implements AuthorRepository{
     private List<Author> authors;
-
+    // !!!!!!!!!
+    // тут по другому прописано у Ильяса
     public AuthorRepositoryImpl(List<Author> authors) {
-        this.authors = authors;
+        // неправильно тк создастся много объектов
+        // this.authors = authors;
+    }
+    // вот так
+    public AuthorRepositoryImpl() {
+        authors = new ArrayList<>();
     }
 
     @Override
