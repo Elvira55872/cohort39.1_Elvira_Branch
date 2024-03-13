@@ -5,14 +5,14 @@ import student_code.models.Author;
 
 import java.util.*;
 
-public class AuthorRepositoryIml implements AuthorRepository {
+public class AuthorRepositoryImpl implements AuthorRepository {
     private Set<Author> authors;
 
-    public AuthorRepositoryIml() {
+    public AuthorRepositoryImpl() {
         authors = new HashSet<>();
     }
 
-    public AuthorRepositoryIml(Collection<Author> authors) {
+    public AuthorRepositoryImpl(Collection<Author> authors) {
         this.authors = new HashSet<>(authors);
     }
 

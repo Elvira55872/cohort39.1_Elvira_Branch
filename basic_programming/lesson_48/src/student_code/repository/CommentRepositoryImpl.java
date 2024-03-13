@@ -7,12 +7,12 @@ import student_code.models.Comment;
 
 import java.util.*;
 
-public class CommentRepositoryIml implements CommentRepository {
+public class CommentRepositoryImpl implements CommentRepository {
     private Set<Comment> comments;
     private Map<Article, Set<Comment>> articleComments;
     private Map<Author, Set<Comment>> authorComments;
 
-    public CommentRepositoryIml() {
+    public CommentRepositoryImpl() {
         articleComments = new HashMap<>();
         authorComments = new HashMap<>();
         comments = new HashSet<>();

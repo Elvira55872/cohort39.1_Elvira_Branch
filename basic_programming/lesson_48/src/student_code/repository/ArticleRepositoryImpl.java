@@ -9,11 +9,11 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-public class ArticleRepositoryIml implements ArticleRepository {
+public class ArticleRepositoryImpl implements ArticleRepository {
     private Set<Article> articles;
     private Map<Author,Set<Article>> allArliclesOfAuthor;
 
-    public ArticleRepositoryIml() {
+    public ArticleRepositoryImpl() {
         articles = new HashSet<>();
         allArliclesOfAuthor = new HashMap<>();
     }
