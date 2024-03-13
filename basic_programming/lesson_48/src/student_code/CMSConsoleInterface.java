@@ -13,19 +13,19 @@ public class CMSConsoleInterface {
     private final CommentService commentService;
 
     public CMSConsoleInterface() {
+        this.scanner = new Scanner(System.in);
+
         this.articleService = new ArticleService();
-        this.authorService = new AuthorService();
+        this.authorService = new AuthorService(scanner);
         this.commentService = new CommentService();
 
-        // после добавления этой строки я смогла создать статью, выходил NullPointerException
+        // после добавления этой строки я смогла создать статью, без нее выходил NullPointerException
         this.articleService.setAuthorService(this.authorService);
         // без этой строки не могла добавить комментарий к статье, выходил NullPointerException
         this.articleService.setCommentService(this.commentService);
         // тоже проблемы без этого
         this.commentService.setAuthorService(this.authorService);
         this.commentService.setArticleService(this.articleService);
-
-        this.scanner = new Scanner(System.in);
     }
 
     public void start() {
@@ -41,12 +41,14 @@ public class CMSConsoleInterface {
             System.out.println("6. Посмотреть список статей по автору");
             System.out.println("7. Посмотреть список комментариев автора");
             System.out.println("8. Посмотреть список комментариев к статье");
-            System.out.println("9. Выйти");
+            System.out.println("9. Удалить автора");
+            System.out.println("10. Выйти");
             System.out.print("Выберите действие: ");
 
             int choice = scanner.nextInt();
             scanner.nextLine(); // Поглощаем остаток строки после числа
 
+            // todo : заменить swich-выражениями для большей читабельности (8 урок)
             switch (choice) {
                 case 1:
                     viewArticles();
@@ -60,9 +62,9 @@ public class CMSConsoleInterface {
                 case 4:
                     addComment();
                     break;
-                    // тут еще надо добавить удаление автора, статьи и комментария
-                    // и методы по изменению данных во всех 3х моделях
-                    // не прописала их тк уже и так много информации в которой легко запутаться
+                // тут еще надо добавить удаление автора, статьи и комментария
+                // и методы по изменению данных во всех 3х моделях
+                // не прописала их тк уже и так много информации в которой легко запутаться
                 case 5:
                     viewAuthors();
                     break;
@@ -76,12 +78,19 @@ public class CMSConsoleInterface {
                     viewCommentsByArticle();
                     break;
                 case 9:
+                    removeAuthor();
+                    break;
+                case 10:
                     running = false;
                     break;
                 default:
                     System.out.println("Неверный выбор. Пожалуйста, попробуйте снова.");
             }
         }
+    }
+
+    private void removeAuthor() {
+        authorService.deleteAuthor();
     }
 
     private void viewArticles() {
@@ -104,7 +113,7 @@ public class CMSConsoleInterface {
     private void addAuthor() {
         // Здесь будет логика для создания автора
         System.out.println("Создание нового автора...");
-        authorService.addAuthor(scanner);
+        authorService.addAuthor();
     }
 
 
