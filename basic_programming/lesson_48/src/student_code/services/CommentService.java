@@ -51,6 +51,7 @@ public class CommentService {
         Author author = authorService.findAuthorByName(scanner.nextLine());
 
         // логика не позволяющая создать комментарий с автором null
+        // todo вынести эту логику в отдельный метод
         while (author == null) {
             System.out.println("Author with this name doesnt exist\n" +
                     "1 - try another name\n" +
@@ -70,9 +71,11 @@ public class CommentService {
         Article article = articleService.findArticle();
 
         // логика не позволяющая создать комментарий со статьей null
+        // todo вынести эту логику в отдельный метод
         while (article == null) {
             System.err.println("Article is not found!\n" +
                     "Try to find article again...");
+            //todo добавить логику выхода из этого цикла
             article = articleService.findArticle();
         }
 
@@ -82,11 +85,7 @@ public class CommentService {
         repository.addComment(new Comment(article, text, author));
     }
 
-    public void deleteComment() {
-        delete(findComment());
-    }
-
-    public void delete(Comment comment) {
+    protected void delete(Comment comment) {
         if (repository.removeComment(comment)) {
             System.out.println(comment.toString() + "was successfully deleted");
         } else {
@@ -94,6 +93,9 @@ public class CommentService {
         }
     }
 
+    public void deleteComment() {
+        delete(findComment());
+    }
 
     // МЕТОД ДЛЯ ОБНОВЛЕНИЯ ДАННЫХ В СУЩЕСТВУЮЩЕМ КОММЕНТАРИИ
     // у комментария нельзя изменить автора или статью к которой он написан, поэтому меняем только текст коммента
@@ -101,12 +103,15 @@ public class CommentService {
         System.out.println("To update comment text, first u need to select comment: ");
         Comment comment = findComment();
 
-        if (comment == null) {
+        while (comment == null) {
+            //todo добавить логику выхода из этого цикла
             System.out.println("Comment doesnt exist");
-        } else {
-            System.out.println("Write new text:");
-            comment.setText(scanner.nextLine());
+            System.out.println("To update comment text, first u need to select comment: ");
+            comment = findComment();
         }
+
+        System.out.println("Write new text:");
+        comment.setText(scanner.nextLine());
     }
 
     // МЕТОДЫ ДЛЯ ПОИСКА КОММЕНТАРИЕВ
@@ -134,8 +139,6 @@ public class CommentService {
             clearLine();
         } else if (answer == 4) {
             comment = findCommentByArticle();
-        } else {
-            return null;
         }
         return comment;
     }

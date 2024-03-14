@@ -6,7 +6,6 @@ import student_code.models.Author;
 import student_code.repository.ArticleRepositoryImpl;
 
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
 
@@ -17,6 +16,8 @@ public class ArticleService {
 
     // ниже 2 объекта нужны для работы методов, тк статьи имеют авторов и комментарии
     private AuthorService authorService;
+
+    // todo использовать эту переменную в коде
     private CommentService commentService;
 
     // 2 конструктора
@@ -46,22 +47,10 @@ public class ArticleService {
         System.out.println("Content: ");
         String content = scanner.nextLine();
 
-        System.out.println("Author name: ");
-        Author author = authorService.findAuthorByName(scanner.nextLine().toLowerCase());
-        // логика не позволяющая создать статью с автором null
-        while (author == null) {
-            System.out.println("Author with this name doesnt exist\n" +
-                    "1 - try another name\n" +
-                    "0 - exit");
-            int answer = scanner.nextInt();
-            clearLine();
+        Author author = authorService.findAuthorForArticle();
 
-            if (answer == 1) {
-                System.out.println("Author name: ");
-                author = authorService.findAuthorByName(scanner.nextLine().toLowerCase());
-            } else {
-                return;
-            }
+        if (author == null) {
+            return;
         }
 
         repository.addArticle(new Article(title, content, author));
@@ -69,6 +58,7 @@ public class ArticleService {
 
     public void delete(Article article) {
         if (repository.removeArticle(article)) {
+            // todo удалять комментарии к удаленной статье
             System.out.println(article.toString() + "was successfully deleted");
         } else {
             System.out.println(article.toString() + "is not existing");
@@ -136,7 +126,7 @@ public class ArticleService {
         int answer = scanner.nextInt();
         clearLine();
         Article article = null;
-
+// todo добавить поиск по автору
         if (answer == 1) {
             article = findArticleByTitel();
         } else if (answer == 2) {
@@ -171,7 +161,7 @@ public class ArticleService {
     }
 
     public Article findArticleByAuthor() {
-        Set<Article> articlesByAuthor = repository.findAllArticlesByAuthor(authorService.findAuthor());
+        Set<Article> articlesByAuthor = findArticlesByAuthor();
 
         System.out.println("Articles of searched Author: " + articlesByAuthor);
 

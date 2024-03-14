@@ -10,6 +10,8 @@ import java.util.Set;
 /**
  * AuthorService: Управление авторами, включая добавление новых авторов и обновление их данных.
  */
+
+// todo написать джава доки для всех методов
 public class AuthorService {
     private AuthorRepository repository;
     private final Scanner scanner;
@@ -135,11 +137,8 @@ public class AuthorService {
     }
 
     public Author findAuthorByName(String name) {
-//        System.out.println("Author name:");
-//        String name = scanner.nextLine().trim().toLowerCase();
-
         for (Author author : repository.findAllAuthors()) {
-            if (author.getName().equals(name)) {
+            if (author.getName().equalsIgnoreCase(name)) {
                 return author;
             }
         }
@@ -153,6 +152,29 @@ public class AuthorService {
             }
         }
         return null;
+    }
+
+
+    protected Author findAuthorForArticle() {
+        System.out.println("Author name: ");
+        Author author = findAuthorByName(scanner.nextLine());
+
+        while (author == null) {
+            System.out.println("Author with this name doesnt exist\n" +
+                    "1 - try another name\n" +
+                    // todo добавить вариант регистрации пользователя
+                    "0 - exit");
+            int answer = scanner.nextInt();
+            clearLine();
+
+            if (answer == 1) {
+                System.out.println("Author name: ");
+                author = findAuthorByName(scanner.nextLine());
+            } else {
+                return null;
+            }
+        }
+        return author;
     }
 
     // СИСТЕМНЫЕ МЕТОДЫ
