@@ -17,8 +17,8 @@ public class Author {
     private static int count;
 
     public Author(String name, String email, String bio) {
-        this.name = name;
-        this.email = email;
+        this.name = name.toLowerCase();
+        this.email = email.toLowerCase();
         this.bio = bio;
         this.ID = count++;
     }

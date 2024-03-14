@@ -8,27 +8,18 @@ import java.util.Scanner;
 import java.util.Set;
 
 /**
- * Сервисный слой содержит бизнес-логику приложения и связывает пользовательский интерфейс с репозиториями:
  * AuthorService: Управление авторами, включая добавление новых авторов и обновление их данных.
- * <p>
- * Сервисный слой - это бэкэнд, который стоит между тем что видит клиент и базой данных
- * Нам надо "подружить" наши сервисы с репозиториями
  */
 public class AuthorService {
-    // нужно сказать сервису, откуда мы будем брать данные
-    // для того чтобы не привязываться к низкоуровневой реализации (AuthorRepositiryIml),
-    // мы возьмем абстракцию AuthorRepositiry
     private AuthorRepository repository;
-    private final Scanner scanner; // он используется в методах ниже, сделала один чтобы не плодить сканеры в каждом методе
+    private final Scanner scanner;
 
-    // конструктор, который принимает какой-то репозиторий в качестве аргумента
+    // 2 КОНСТРУКТОРА
     public AuthorService(AuthorRepository repository, Scanner scanner) {
         this.repository = repository;
         this.scanner = scanner;
     }
 
-    // конструктор, который НЕ принимает репозиторий
-    // в этом случае нам надо создать репозиторий
     public AuthorService(Scanner scanner) {
         repository = new AuthorRepositoryImpl();
         this.scanner = scanner;
@@ -63,14 +54,10 @@ public class AuthorService {
 
 
     // МЕТОДЫ ДЛЯ ОБНОВЛЕНИЯ ДАННЫХ У СУЩЕСТВУЮЩИХ АВТОРОВ
-    // и я не знаю правильно ли в качестве аргумента передавать автора
-    // или же надо в качестве аргумента передавать сразу новое значение ? (тут я даже не знаю как реализовать можно)
-    // или делать это через сканнер ??
-    // и делать это в отдельных методах для каждого поля или сделать 1 метод со свич кейсами? (этот вариант мне кажется громоздким и менее читабельным (BookService))
-
     public void updateAuthor() {
+        System.out.println("To update Author, first u need to select author: ");
         Author author = findAuthor();
-        System.out.println("To update:\n" +
+        System.out.println("What u want to update:\n" +
                 "1 - name\n" +
                 "2 - email\n" +
                 "3 - bio\n" +
@@ -124,12 +111,12 @@ public class AuthorService {
     }
 
     // МЕТОДЫ ДЛЯ ПОИСКА АВТОРОВ
-    private Author findAuthor() {
+    public Author findAuthor() {
         System.out.println("1 - find author by name\n"
                 + "2 - find by ID\n"
                 + "0 - exit");
         int answer = scanner.nextInt();
-        scanner.nextLine();
+        clearLine();
         Author author = null;
 
         if (answer == 1) {
@@ -148,6 +135,9 @@ public class AuthorService {
     }
 
     public Author findAuthorByName(String name) {
+//        System.out.println("Author name:");
+//        String name = scanner.nextLine().trim().toLowerCase();
+
         for (Author author : repository.findAllAuthors()) {
             if (author.getName().equals(name)) {
                 return author;
@@ -173,7 +163,7 @@ public class AuthorService {
 
     private String getUniqueName() {
         System.out.println("Name:");
-        String name = scanner.nextLine();
+        String name = scanner.nextLine().toLowerCase();
         Author author = findAuthorByName(name);
 
         while (author != null) {
@@ -181,7 +171,7 @@ public class AuthorService {
             System.out.println("1 - try another name\n"
                     + "2 - exit");
             if (scanner.nextInt() == 1) {
-                scanner.nextLine();
+                clearLine();
                 System.out.println("Name:");
                 name = scanner.nextLine();
                 author = findAuthorByName(name);
