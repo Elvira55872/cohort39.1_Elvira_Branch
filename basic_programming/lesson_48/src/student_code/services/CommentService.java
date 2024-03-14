@@ -48,35 +48,15 @@ public class CommentService {
     public void addComment() {
         System.out.println("To add comment, first u need to identify yourself as existing author!\n" +
                 "What is your name?");
-        Author author = authorService.findAuthorByName(scanner.nextLine());
 
-        // логика не позволяющая создать комментарий с автором null
-        // todo вынести эту логику в отдельный метод
-        while (author == null) {
-            System.out.println("Author with this name doesnt exist\n" +
-                    "1 - try another name\n" +
-                    "0 - exit");
-            int answer = scanner.nextInt();
-            clearLine();
-
-            if (answer == 1) {
-                System.out.println("Author name: ");
-                author = authorService.findAuthorByName(scanner.nextLine().toLowerCase());
-            } else {
-                return;
-            }
+        Author author = authorService.findAuthorForArticle();
+        if (author == null) {
+            return;
         }
 
-        System.out.println("To add comment, u also need to find article: ");
-        Article article = articleService.findArticle();
-
-        // логика не позволяющая создать комментарий со статьей null
-        // todo вынести эту логику в отдельный метод
-        while (article == null) {
-            System.err.println("Article is not found!\n" +
-                    "Try to find article again...");
-            //todo добавить логику выхода из этого цикла
-            article = articleService.findArticle();
+        Article article = articleService.findArticleForComment();
+        if (article == null) {
+            return;
         }
 
         System.out.println("Text of comment: ");
@@ -84,6 +64,7 @@ public class CommentService {
 
         repository.addComment(new Comment(article, text, author));
     }
+
 
     protected void delete(Comment comment) {
         if (repository.removeComment(comment)) {
@@ -104,10 +85,18 @@ public class CommentService {
         Comment comment = findComment();
 
         while (comment == null) {
-            //todo добавить логику выхода из этого цикла
-            System.out.println("Comment doesnt exist");
-            System.out.println("To update comment text, first u need to select comment: ");
-            comment = findComment();
+            System.out.println("Comment doesnt exist\n" +
+                    "1 - continue searching for comment\n" +
+                    "0 - exit");
+            int choise = scanner.nextInt();
+            clearLine();
+
+            if(choise == 1){
+                System.out.println("To update comment text, first u need to select comment: ");
+                comment = findComment();
+            } else {
+                return;
+            }
         }
 
         System.out.println("Write new text:");
@@ -172,6 +161,10 @@ public class CommentService {
     // 2 метода для поиска комментариев или 1 комментария по СТАТЬЕ
     public Set<Comment> findCommentsByArticle() {
         System.out.println("To find comments by article, first u need to select article: ");
+        return repository.findAllArticleComments(articleService.findArticle());
+    }
+
+    protected Set<Comment> findCommentsByArticle(Article article) {
         return repository.findAllArticleComments(articleService.findArticle());
     }
 

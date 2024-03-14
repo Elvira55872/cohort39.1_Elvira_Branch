@@ -3,6 +3,7 @@ package student_code.services;
 import student_code.interfaces.ArticleRepository;
 import student_code.models.Article;
 import student_code.models.Author;
+import student_code.models.Comment;
 import student_code.repository.ArticleRepositoryImpl;
 
 import java.util.HashSet;
@@ -17,7 +18,6 @@ public class ArticleService {
     // ниже 2 объекта нужны для работы методов, тк статьи имеют авторов и комментарии
     private AuthorService authorService;
 
-    // todo использовать эту переменную в коде
     private CommentService commentService;
 
     // 2 конструктора
@@ -58,8 +58,11 @@ public class ArticleService {
 
     public void delete(Article article) {
         if (repository.removeArticle(article)) {
-            // todo удалять комментарии к удаленной статье
-            System.out.println(article.toString() + "was successfully deleted");
+            Set<Comment> allCommentsOfArticle = commentService.findCommentsByArticle(article);
+            for (Comment comment : allCommentsOfArticle) {
+                commentService.delete(comment);
+            }
+            System.out.println(article.toString() + "was successfully deleted with all comments");
         } else {
             System.out.println(article.toString() + "is not existing");
         }
@@ -78,8 +81,7 @@ public class ArticleService {
                 "1 - titel\n" +
                 "2 - content\n" +
                 "0 - exit");
-        int answer = scanner.nextInt();
-        clearLine();
+        int answer = getChoise();
 
         if (answer == 1) {
             updateArticleTitle(article);
@@ -122,17 +124,19 @@ public class ArticleService {
         System.out.println("1 - find article by titel\n"
                 + "2 - find by content\n"
                 + "3 - find by ID\n"
+                + "4 - find by Author\n"
                 + "0 - exit");
-        int answer = scanner.nextInt();
-        clearLine();
+        int answer = getChoise();
         Article article = null;
-// todo добавить поиск по автору
+
         if (answer == 1) {
             article = findArticleByTitel();
         } else if (answer == 2) {
             article = findArticleByContent();
         } else if (answer == 3) {
             article = findArticleByID();
+        } else if (answer == 4) {
+            article = findArticleByAuthor();
         } else {
             return null;
         }
@@ -142,8 +146,7 @@ public class ArticleService {
     // только 1 метод поиска по ID, тк ID уникальный
     public Article findArticleByID() {
         System.out.println("Write ID to get article: ");
-        int ID = scanner.nextInt();
-        clearLine();
+        int ID = getChoise();
 
         for (Article article : repository.findAllArticles()) {
             if (article.getID() == ID) {
@@ -217,10 +220,32 @@ public class ArticleService {
         return findArticleByID();
     }
 
+    // логика не позволяющая создать комментарий со статьей null
+    protected Article findArticleForComment() {
+        System.out.println("To add comment, u also need to find article: ");
+        Article article = findArticle();
+
+        while (article == null) {
+            System.out.println("Article is not found!\n" +
+                    "1 - Try to find article again" +
+                    "0 - exit");
+            int choise = getChoise();
+
+            if (choise == 1) {
+                article = findArticle();
+            } else {
+                return null;
+            }
+        }
+        return article;
+    }
+
     // СИСТЕМНЫЕ МЕТОДЫ
     // метод для очищения строки после использования scanner.nextInt()
-    private void clearLine() {
+    private int getChoise() {
+        int answer = scanner.nextInt();
         scanner.nextLine();
+        return answer;
     }
 }
 

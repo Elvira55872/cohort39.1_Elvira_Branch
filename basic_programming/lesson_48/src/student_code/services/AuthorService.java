@@ -8,10 +8,27 @@ import java.util.Scanner;
 import java.util.Set;
 
 /**
+ * Это JavaDOC
+ * <p>
  * AuthorService: Управление авторами, включая добавление новых авторов и обновление их данных.
+ * <p>
+ * Пишется на английском языке!!!
+ * <p>
+ * Нужно ответить на вопросы:
+ * <p>
+ * 1 - что это за класс?
+ * <p>
+ * 2 - для чего он используется?
+ * (Пример: используется для взаимодействия с репозиторием для хранения записи обо всех авторах)
+ * <p>
+ * 3 - ка кон используется?
+ * <p>
+ * Если есть основной метод(main, validate или др), надо об этом указать.
+ * <p>
+ * Если этот класс активно взаимодействует с другими классами (у нас это CMSConsoleInterface
+ * и 2 других класса-сервисов), надо это указать!
  */
 
-// todo написать джава доки для всех методов
 public class AuthorService {
     private AuthorRepository repository;
     private final Scanner scanner;
@@ -27,10 +44,10 @@ public class AuthorService {
         this.scanner = scanner;
     }
 
-    public void addAuthor() {
+    public Author addAuthor() {
         String name = getUniqueName();
         if (name == null) {
-            return;
+            return null;
         }
         // тут логика на проверку правильности формата почты и ее уникальности
         // (решила не писать их и не перегружать код)
@@ -39,7 +56,10 @@ public class AuthorService {
         System.out.println("Bio:");
         String bio = scanner.nextLine();
 
-        repository.addAuthor(new Author(name, email, bio));
+        Author author = new Author(name, email, bio);
+        repository.addAuthor(author);
+
+        return author;
     }
 
     private void delete(Author author) {
@@ -162,7 +182,7 @@ public class AuthorService {
         while (author == null) {
             System.out.println("Author with this name doesnt exist\n" +
                     "1 - try another name\n" +
-                    // todo добавить вариант регистрации пользователя
+                    "2 - register new user\n" +
                     "0 - exit");
             int answer = scanner.nextInt();
             clearLine();
@@ -170,6 +190,8 @@ public class AuthorService {
             if (answer == 1) {
                 System.out.println("Author name: ");
                 author = findAuthorByName(scanner.nextLine());
+            } else if (answer == 2) {
+                author = addAuthor();
             } else {
                 return null;
             }
